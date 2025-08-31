@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<textarea id="input"></textarea>
+<div id="log"></div>
+
+<script>
+const input = document.getElementById("input");
+const log = document.getElementById("log");
+
+input.addEventListener("input", throttle(e => {
+	log.textContent = `"${e.target.value}" is saved!`;
+}))
+
+function throttle(fn, delay = 2000) {
+  let timer = null;
+
+  return (...args) => {
+    if (timer) return;
+    timer = setTimeout(() => {
+      fn(...args);
+      timer = null;
+    }, delay);
+  };
+}
+
+</script>
+</body>
+</html>
